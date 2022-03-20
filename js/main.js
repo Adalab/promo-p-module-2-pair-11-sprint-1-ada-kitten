@@ -5,7 +5,7 @@ const newForm = document.querySelector('.new-form');
 newForm.classList.add('js-new-form')
 newForm.classList.remove('collapsed');
 
-const list = document.querySelector ('.data');
+const list = document.querySelector ('.list');
 
 list.classList.add('.js-list');
 

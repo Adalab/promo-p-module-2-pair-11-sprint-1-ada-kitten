@@ -1,9 +1,14 @@
 "use strict";
 
-const newForm = document.querySelector('.new-form');
+//constante para el formulario que se mostrará o no dependiendo del click:
+const newForm = document.querySelector('.js-new-form');
+//condicional que añade y quita la clase collapsed en función de si el formulario ya cuenta con esa clase o no
+if (newForm.classList.contains ("collapsed")) {
+  newForm.classList.remove ("collapsed");
+} else {
+  newForm.classList.add ("collapsed");
+}
 
-newForm.classList.add('js-new-form')
-newForm.classList.remove('collapsed');
 
 const list = document.querySelector ('.list');
 
@@ -15,7 +20,7 @@ const kittenImage1 = "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
 const kittenName1 = "anastacio";
 const kittenDesc1 =
   "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!";
-const kittenRace1 = "British Shorthair";
+const kittenRace1 = "";
 
 const kittenImage2 = "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg";
 const kittenName2 = "fiona";
@@ -54,10 +59,18 @@ const kitten3 = `<li class="card">
 </article></li>` 
 
 
-
+//condicional que muestra a los gatitos si en su descripción se muestra el valor "juguetón"
 const input_search_desc = document.querySelector('.js_in_search_desc');
 input_search_desc.value = 'juguetón';
 const descrSearchText = input_search_desc.value;
-if( kittenDesc1.includes(descrSearchText) ) { list.innerHTML += kitten1;}
-if( kittenDesc2.includes(descrSearchText) ) { list.innerHTML += kitten2;}
-if( kittenDesc3.includes(descrSearchText) ) { list.innerHTML += kitten3;}
+if( kittenDesc1.includes(descrSearchText) ) 
+  { list.innerHTML += kitten1;}
+if( kittenDesc2.includes(descrSearchText) ) 
+  { list.innerHTML += kitten2;}
+if( kittenDesc3.includes(descrSearchText) ) 
+  { list.innerHTML += kitten3;}
+
+  //Valida la información de las razas, si el gatito no tiene la raza especificada mostraremos el mensaje No se ha especificado la raza. Para ello verifica si la raza tienen algún valor, y en dependencia del resultado de la comprobación muestra un mensaje o la raza si existe.
+
+  if (kittenRace3 === "") {
+    list.innerHTML += `<h3 class='card_race'>No se ha especificado la raza</h3>`;} 

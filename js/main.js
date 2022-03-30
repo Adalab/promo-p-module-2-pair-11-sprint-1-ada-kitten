@@ -2,19 +2,8 @@
 //primeros ejercicios (añadir clase)
 const list = document.querySelector ('.list');
 list.classList.add('.js-list');
-
-//formulario que se mostrará o no dependiendo del click:
-const newForm = document.querySelector('.js-new-form');
-const plusBtn = document.querySelector('.fa-plus-circle');
-
-plusBtn.addEventListener('click', ()=>{
-  newForm.classList.toggle ("collapsed");
-});
-
-
-
+//(añadir html a través de js)
 //DATOS//
-
 const kittenImage1 = "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
 const kittenName1 = "anastacio";
 const kittenDesc1 =
@@ -34,7 +23,6 @@ const kittenDesc3 =
 const kittenRace3 = "British Shorthair";
 
 //ESTRUCTURA TARJETA//
-
 const kitten1 = `<li class="card">
 <article> <img  class="card_img"   src="${kittenImage1}"    alt="gatito"  /> 
 <h3 class="card_title">${kittenName1}</h3>  
@@ -73,36 +61,60 @@ if( kittenDesc3.includes(descrSearchText) )
   { list.innerHTML += kitten3;} */
 
   //Valida la información de las razas, si el gatito no tiene la raza especificada mostraremos el mensaje No se ha especificado la raza. Para ello verifica si la raza tienen algún valor, y en dependencia del resultado de la comprobación muestra un mensaje o la raza si existe.
-
+/* 
   if (kittenRace3 === "") {
-    list.innerHTML += `<h3 class='card_race'>No se ha especificado la raza</h3>`;} 
+    list.innerHTML += `<h3 class='card_race'>No se ha especificado la raza</h3>`;}  */
 
+
+
+    //formulario que se mostrará o no dependiendo del click:
+const newForm = document.querySelector('.js-new-form');
+const plusBtn = document.querySelector('.fa-plus-circle');
+
+function showNewCatForm() {
+  newForm.classList.remove('collapsed');
+}
+function hideNewCatForm() {
+  newForm.classList.add('collapsed');
+}
+
+plusBtn.addEventListener('click', handleClickNewCatForm);
+
+function handleClickNewCatForm(event) {
+  event.preventDefault();
+  if (newForm.classList.contains('collapsed')) {
+    showNewCatForm(event);
+  } else hideNewCatForm(event);
+}
     //FORMULARIO NUEVO GATITO: validar el caso de que la usuaria le dé clic al botón Añadir y no haya rellenado lo valores de la foto, nombre y descripción de manera obligatoria, la raza no es un campo obligatorio a insertar.
 
     const addButton = document.querySelector('.js-btn-add');
 
-      const inputDesc = document.querySelector(".js-input-desc");
-      const inputPhoto = document.querySelector(".js-input-photo");
-      const inputName = document.querySelector(".js-input-name");
-      const inputRace = document.querySelector(".js-input-race");
-      const labelMesageError = document.querySelector(".js-label-error");
+    const inputDesc = document.querySelector(".js-input-desc");
+    const inputPhoto = document.querySelector(".js-input-photo");
+    const inputName = document.querySelector(".js-input-name");
+    const inputRace = document.querySelector(".js-input-race");
+    
+    const labelMesageError = document.querySelector(".js-label-error");
 
-    addButton.addEventListener('click', ()=>{
+    addButton.addEventListener('click', addNewKitten);
+
+    function addNewKitten(event){
       const valueDesc = inputDesc.value;
       const valuePhoto = inputPhoto.value;
       const valueName = inputName.value;
       const valueRace = inputRace.value;
       
       if (valueDesc === "" && valuePhoto === "" && valueName === "" && valueRace === "") {
-        //completa el código
         event.preventDefault();
         console.log("hola");
     
       } else {
-        //completa el código
         labelMesageError.innerHTML="Debe rellenar todos los valores";
       }
-    });
+    }
+
+  
 
  //Validar formulario búsqueda. En este ejercicio vamos a validar el caso de que la usuaria le dé clic al botón Buscar y no haya rellenado alguno de los valores a buscar
     const inputSearchDesc = document.querySelector('.js_in_search_desc');
